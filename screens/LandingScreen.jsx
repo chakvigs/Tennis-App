@@ -18,7 +18,12 @@ export default class LandingScreen extends React.Component {
           onChangeText={text => this.setState({
             password:text
           })}/>*/}
-        <Image source = {require('../assets/tennisCourtLogo.png')}/>
+        <View style = {styles.imageContainer}>
+          <Image style = {styles.logoImage} source = {require('../assets/tennisCourtLogo.png')}/>
+        </View>
+        <Text style = {styles.text}>
+          Tennis App
+        </Text>
         <TouchableOpacity
           onPress = {() => this.props.navigation.navigate('Login')}
           style = {styles.button}
@@ -81,5 +86,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25
+  },
+  imageContainer: {
+    
+  },
+  logoImage: {
+    width: screen.width/3,
+    aspectRatio: 1,
+    height: undefined
   }
 })

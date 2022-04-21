@@ -17,29 +17,29 @@ export default class SignUpScreen extends React.Component {
   render() {
     return(
       <View style = {styles.container}>
-        <TextInput  
+        <TextInput  style = {styles.textInput}
           placeholder="First Name"
           onChangeText={text => this.setState({
             firstName:text
           })}/>
-        <TextInput  
+        <TextInput style = {styles.textInput}
           placeholder="Last Name"
           onChangeText={text => this.setState({
             lastName:text
           })}/>
-        <TextInput  
+        <TextInput  style = {styles.textInput}
           placeholder="Email"
           onChangeText={text => this.setState({
             email:text
           })}/>
-        <TextInput
+        <TextInput style = {styles.textInput}
           secureTextEntry = {true}  
           placeholder="Password"
           onChangeText={text => this.setState({
             password:text
           })}/>
 
-        <TextInput
+        <TextInput style = {styles.textInput}
           secureTextEntry = {true}  
           placeholder="Re-enter Password"
           onChangeText={text => this.setState({
@@ -70,4 +70,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textInput: {
+    borderWidth: 1,
+    borderColor: 'black',
+    width: 200,
+    padding: 5,
+    marginTop: 5,
+    fontSize: 20,
+  }
 })
