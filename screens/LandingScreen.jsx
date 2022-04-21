@@ -18,7 +18,7 @@ export default class LandingScreen extends React.Component {
           onChangeText={text => this.setState({
             password:text
           })}/>*/}
-        {/*<Image source = {require('../assets/tennisCourtLogo.png')}/>*/}
+        <Image source = {require('../assets/tennisCourtLogo.png')}/>
         <TouchableOpacity
           onPress = {() => this.props.navigation.navigate('Login')}
           style = {styles.button}
