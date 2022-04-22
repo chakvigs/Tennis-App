@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {View, Text, TouchableOpacity, Dimensions, StyleSheet, TextInput} from 'react-native'
-const screen = Dimensions.get("screen");
-
+import globalStyles from '../styles';
 export default class LoginScreen extends React.Component {
   constructor() {
     super()
@@ -14,22 +13,21 @@ export default class LoginScreen extends React.Component {
   render(){
     return(
       <View style = {styles.container}>
-        <TextInput  
+        <TextInput  style = {globalStyles.textInput}
           placeholder="Email"
           onChangeText={text => this.setState({
             username:text
           })}/>
-        <TextInput
-          style = {{}}
+        <TextInput 
+          style = {globalStyles.textInput}
           secureTextEntry = {true} 
           placeholder="Password"
           onChangeText={text => this.setState({
             password:text
           })}/>
 
-        <TouchableOpacity
+        <TouchableOpacity style = {globalStyles.button}
           onPress = {() => this.props.navigation.navigate('Home')}
-          style = {styles.button}
         >
           <Text>Log In</Text>
         </TouchableOpacity>
@@ -49,15 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  button: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: 'gray',
-    width: screen.width/3,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   text: {
-    color: 'blue'
+    color: 'blue',
   }
 })

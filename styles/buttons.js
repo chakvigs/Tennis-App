@@ -1,0 +1,8 @@
+const buttonStyle = {
+  largeButton: {
+
+  },
+  authenticationButton: {
+
+  }
+}
