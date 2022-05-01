@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import MapView, {Marker} from 'react-native-maps';
+import globalStyles from '../styles';
 
 // import all the components we are going to use
 import {
@@ -14,8 +15,9 @@ import {
   Dimensions,
   Linking,
 } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const MapContainer  = () => {
+const MapContainer  = (props) => {
   /*const [
     currentLongitude,
     setCurrentLongitude
@@ -80,8 +82,23 @@ const MapContainer  = () => {
       }
     );
   }*/
+  
 
         return (
+          <View>
+            <View style = {{
+              position: 'absolute',
+              top: 50,
+              zIndex: 1
+            }}>
+              <TouchableOpacity style = {globalStyles.button}
+              onPress = {() => props.navigation.goBack()}>
+                <Text style = {globalStyles.text}>
+                  Return to Home Screen
+                </Text>
+              </TouchableOpacity>
+            </View>
+            
             <View style={styles.container}>
                 <MapView style={styles.map}
                   initialRegion={{
@@ -219,6 +236,7 @@ const MapContainer  = () => {
                 />
               </MapView>
             </View>
+          </View>
         );
 }
 
@@ -256,6 +274,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    position: 'absolute'
   },
     map: {
     width: Dimensions.get('window').width,

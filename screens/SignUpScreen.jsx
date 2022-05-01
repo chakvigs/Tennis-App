@@ -1,18 +1,26 @@
 import * as React from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions} from 'react-native'
 import globalStyles from '../styles/index';
+import { signUp } from '../utils/authentication';
+
 const screen = Dimensions.get("screen");
 export default class SignUpScreen extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props);  // calls the parent class' constructor
     this.state = {
       firstName: '',
       lastName: '',
       email: '',
       password: '',
-      password2: ''
+      rePassword: ''
     }
   }
+
+  async signUpButtonCallback() {
+    await signUp(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.rePassword) ;  // parameters for signUp?
+    this.props.navigation.navigate('MapContainer')
+  }
+    
   
   render() {
     return(
@@ -47,8 +55,7 @@ export default class SignUpScreen extends React.Component {
           })}/>
 
         <TouchableOpacity style = {globalStyles.button}
-          onPress = {() => this.props.navigation.navigate('Home')}
-        >
+          onPress ={() => this.signUpButtonCallback()}>
           <Text>Sign Up</Text>
         </TouchableOpacity>
       </View>

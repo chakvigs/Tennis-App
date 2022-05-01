@@ -1,13 +1,18 @@
 import * as React from 'react'
 import {View, Text, TouchableOpacity, Dimensions, StyleSheet, TextInput} from 'react-native'
 import globalStyles from '../styles';
+import { logIn, authStateListener } from '../utils/authentication';
 export default class LoginScreen extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      username: '',
+      email: '',
       password: ''
     }
+  }
+
+  async logInCallback() {
+    await logIn(this.state.email, this.state.password)  // failing, or succeeding
   }
 
   render(){
@@ -16,7 +21,7 @@ export default class LoginScreen extends React.Component {
         <TextInput  style = {globalStyles.textInput}
           placeholder="Email"
           onChangeText={text => this.setState({
-            username:text
+            email:text
           })}/>
         <TextInput 
           style = {globalStyles.textInput}
@@ -27,7 +32,7 @@ export default class LoginScreen extends React.Component {
           })}/>
 
         <TouchableOpacity style = {globalStyles.button}
-          onPress = {() => this.props.navigation.navigate('Home')}
+          onPress = {() => this.logInCallback()}
         >
           <Text>Log In</Text>
         </TouchableOpacity>

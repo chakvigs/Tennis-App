@@ -1,8 +1,13 @@
 import * as React from 'react'
 import {View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Linking, Dimensions} from 'react-native'
+
 const screen = Dimensions.get("screen");
 
 export default class LandingScreen extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return(
       <View style = {styles.container}>

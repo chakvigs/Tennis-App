@@ -8,11 +8,13 @@ import SignUpScreen from './screens/SignUpScreen'
 import MapContainer from './screens/MapContainer'
 import CourtsListScreen from './screens/CourtsListScreen'
 import LandingScreen from './screens/LandingScreen'
-
-
+import HomeScreen from './screens/HomeScreen'
+import MainScreen from './screens/MainScreen'
 
 const Stack = createStackNavigator()
+
 export default class App extends React.Component{
+
   render() {
     return(
       <NavigationContainer>
@@ -21,8 +23,16 @@ export default class App extends React.Component{
           screenOptions = {{headerShown: false}}
         >
           <Stack.Screen
-            name = 'Home'
+            name = 'Landing'
             component = {LandingScreen}
+          />
+          <Stack.Screen
+            name = 'Main'
+            component = {MainScreen}
+          />
+          <Stack.Screen
+            name = 'Home'
+            component = {HomeScreen}
           />
           <Stack.Screen
             name = 'ForgotPassword'
@@ -41,7 +51,7 @@ export default class App extends React.Component{
             component = {MapContainer}
           />
           <Stack.Screen
-            name = 'CourtsListScreen'
+            name = 'CourtsList'
             component = {CourtsListScreen}
           />
           
