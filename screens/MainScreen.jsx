@@ -46,11 +46,12 @@ export default class HomeScreen extends React.Component{
 const styles = StyleSheet.create({
     button: {
         marginTop: 30,
-        padding: 10,
+        padding: 13,
         backgroundColor: 'gray',
         width: screen.width/3,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red'
+        backgroundColor: 'red',
+        borderRadius: 20
       },
 })

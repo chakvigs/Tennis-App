@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions} from 'react-native'
+import {View, Text, TouchableOpacity, TextInput, StyleSheet, Dimensions, Alert} from 'react-native'
+import { retrySymbolicateLogNow } from 'react-native/Libraries/LogBox/Data/LogBoxData';
 import globalStyles from '../styles/index';
 import { signUp } from '../utils/authentication';
 
@@ -12,13 +13,75 @@ export default class SignUpScreen extends React.Component {
       lastName: '',
       email: '',
       password: '',
-      rePassword: ''
+      password2: '',
+      alertMessage: '',
     }
   }
 
+  // checkIfValid()
+  preValidation() {
+    
+    if(this.state.firstName === '') {
+      Alert.alert(
+        "Notice:",
+        'Please enter your first name',
+        [
+          { text: "OK"}
+        ]
+      );
+      return false
+    }
+    else if(this.state.lastName === '') {
+        Alert.alert(
+          "Notice:",
+          'Please enter your last name',
+          [
+            { text: "OK"}
+          ]
+        );
+      return false
+    }
+    else if(this.state.email === '') {
+      Alert.alert(
+        "Notice:",
+        'Please enter your email',
+        [
+          { text: "OK"}
+        ]
+      );
+      return false
+    }
+    else if(this.state.password === '') {
+      Alert.alert(
+        "Notice:",
+        'Please enter your password',
+        [
+          { text: "OK"}
+        ]
+      );
+      return false
+    }
+    else if(this.state.password !== this.state.password2) {
+      Alert.alert(
+        "Notice:",
+        "Your passwords don't match",
+        [
+          { text: "OK"}
+        ]
+      );
+      return false
+    }
+    else{
+      return true
+    }
+
+    // return true or false
+  }
+
   async signUpButtonCallback() {
-    await signUp(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.rePassword) ;  // parameters for signUp?
-    this.props.navigation.navigate('MapContainer')
+    if(this.preValidation() === true) {
+      await signUp(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.password2) ;  // parameters for signUp?
+    }
   }
     
   

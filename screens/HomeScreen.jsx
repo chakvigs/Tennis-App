@@ -13,7 +13,7 @@ export default class HomeScreen extends React.Component{
           if (user) {
             this.props.navigation.navigate('Main')
           } else {
-              this.props.navigation.navigate('Landing')
+            this.props.navigation.navigate('Landing')
           }
         })
       }

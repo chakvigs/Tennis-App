@@ -1,6 +1,6 @@
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../firebaseConfig"
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "firebase/auth";
 
 export const signOutFunction = () => {
   signOut(auth).then(() => {
@@ -9,6 +9,20 @@ export const signOutFunction = () => {
     // An error happened.
   });
 }
+
+export const forgotPasswordFunction = (email) => {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      // Password reset email sent!
+      // ..
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+  }
+
 
 export const signUp = (firstName, lastName, email, password, rePassword) => {
   createUserWithEmailAndPassword(auth, email, password)

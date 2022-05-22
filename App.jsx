@@ -10,6 +10,7 @@ import CourtsListScreen from './screens/CourtsListScreen'
 import LandingScreen from './screens/LandingScreen'
 import HomeScreen from './screens/HomeScreen'
 import MainScreen from './screens/MainScreen'
+import ReservingScreen from './screens/ReservingScreen'
 
 const Stack = createStackNavigator()
 
@@ -25,6 +26,10 @@ export default class App extends React.Component{
           <Stack.Screen
             name = 'Landing'
             component = {LandingScreen}
+          />
+          <Stack.Screen
+            name = 'Reserving'
+            component = {ReservingScreen}
           />
           <Stack.Screen
             name = 'Main'
