@@ -1,120 +1,139 @@
 {
     "EVHS": {
         "description": "",
-        "courts": [
-            {
+        "name": "EVHS",
+        "courts": {
+            "1": {
                 "name": "EVHS Court 1",
-                "id": "evhs1",
-                "position": "1",
-                "timeRemaining": 0
+                "id": "1",
+                "internalName": "evhs1",
+                "location": "EVHS",
+                "expirationTime": 1654636034554
             },
-            {
+            "2": {
                 "name": "EVHS Court 2",
-                "id": "evhs2",
-                "position": "2",
-                "timeRemaining": 0
+                "internalName": "evhs2",
+                "location": "EVHS",
+                "id": "2",
+                "expirationTime": 1654636034554
             },
-            {
+            "3": {
                 "name": "EVHS Court 3",
-                "id": "evhs3",
-                "position": "3",
-                "timeRemaining": 0
+                "internalName": "evhs3",
+                "location": "EVHS",
+                "id": "3",
+                "expirationTime": 1654636034554
             },
-            {
+            "4": {
                 "name": "EVHS Court 4",
-                "id": "evhs4",
-                "position": "4",
-                "timeRemaining": 0
+                "internalName": "evhs4",
+                "id": "4",
+                "location": "EVHS",
+                "expirationTime": 1654636034554
             },
-            {
+            "5": {
                 "name": "EVHS Court 5",
-                "id": "evhs5",
-                "position": "5",
-                "timeRemaining": 0
+                "internalName": "evhs5",
+                "id": "5",
+                "location": "EVHS",
+                "expirationTime": 1654636034554
             },
-            {
+            "6": {
                 "name": "EVHS Court 6",
-                "id": "evhs6",
-                "position": "6",
-                "timeRemaining": 0
+                "internalName": "evhs6",
+                "id": "6",
+                "location": "EVHS",
+                "expirationTime": 1654636034554
             }
-        ]
+        }
     },
     "EVC": {
         "description": "",
-        "courts": [
-            {
+        "name": "EVC",
+        "courts": {
+            "1": {
                 "name": "EVC Court 1",
-                "id": "evc1",
-                "position": "7",
-                "timeRemaining": 0
+                "internalName": "evc1",
+                "location": "EVC",
+                "id": "1",
+                "expirationTime": 1654636034554
             },
-            {
+            "2": {
                 "name": "EVC Court 2",
-                "id": "evc2",
-                "position": "8",
-                "timeRemaining": 0
+                "internalName": "evc2",
+                "location": "EVC",
+                "id": "2",
+                "expirationTime": 1654636034554
             },
-            {
+            "3": {
                 "name": "EVC Court 3",
-                "id": "evc3",
-                "position": "9",
-                "timeRemaining": 0
+                "internalName": "evc3",
+                "location": "EVC",
+                "id": "3",
+                "expirationTime": 1654636034554
             },
-            {
+            "4": {
                 "name": "EVC Court 4",
-                "id": "evc4",
-                "position": "10",
-                "timeRemaining": 0
+                "location": "EVC",
+                "internalName": "evc4",
+                "id": "4",
+                "expirationTime": 1654636034554
             },
-            {
+            "5": {
                 "name": "EVC Court 5",
-                "id": "evc5",
-                "position": "11",
-                "timeRemaining": 0
+                "location": "EVC",
+                "internalName": "evc5",
+                "id": "5",
+                "expirationTime": 1654636034554
             },
-            {
+            "6": {
                 "name": "EVC Court 6",
-                "id": "evc6",
-                "position": "12",
-                "timeRemaining": 0
+                "location": "EVC",
+                "internalName": "evc6",
+                "id": "6",
+                "expirationTime": 1654636034554
             },
-            {
+            "7": {
                 "name": "EVC Court 7",
-                "id": "evc7",
-                "position": "13",
-                "timeRemaining": 0
+                "location": "EVC",
+                "internalName": "evc7",
+                "id": "7",
+                "expirationTime": 1654636034554
             },
-            {
+            "8": {
                 "name": "EVC Court 8",
-                "id": "evc8",
-                "position": "14",
-                "timeRemaining": 0
+                "internalName": "evc8",
+                "location": "EVC",
+                "id": "8",
+                "expirationTime": 1654636034554
             }
-        ]  
+        }  
     },
     "Fowler Creek": {
         "description": "",
-        "courts": [
-            {
+        "name": "Fowler Creek",
+        "courts": {
+            "1":{
                 "name": "Fowler Creek Court 1",
-                "id": "fowler1",
-                "position": "15",
-                "timeRemaining": 0
+                "internalName": "fowler1",
+                "location": "Fowler Creek",
+                "id": "1",
+                "expirationTime": 1654636034554
             },
-            {
+            "2":{
                 "name": "Fowler Creek Court 2",
-                "id": "fowler2",
-                "position": "16",
-                "timeRemaining": 0
+                "internalName": "fowler2",
+                "location": "Fowler Creek",
+                "id": "2",
+                "expirationTime": 1654636034554
             },
-
-            {
-                "name": "Folwer Creek Court 3",
-                "id": "fowler3",
-                "position": "17",
-                "timeRemaining": 0
+            "3":{
+                "name": "Fowler Creek Court 3",
+                "internalName": "fowler3",
+                "location": "Fowler Creek",
+                "id": "3",
+                "expirationTime": 1654636034554
             }
-        ]
+        }
     }
 }

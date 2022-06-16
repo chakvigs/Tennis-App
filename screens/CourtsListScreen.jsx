@@ -1,6 +1,7 @@
 import React from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
 import { collection, addDoc, doc, getDocs } from "firebase/firestore"; 
+const functions = require('firebase-functions');
 import * as data from '../courts';
 import { db1 } from '../firebaseConfig'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
   },
   courtRow:{
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     marginBottom: 10,
     paddingRight: 10
   }
@@ -41,8 +42,16 @@ const styles = StyleSheet.create({
 
 const writeData = async() => {
   try {
-    const docRef = await addDoc(collection(db1, "tennisCourts"), data);
-    console.log("Document written with ID: ", docRef.id);
+    // Currently: we add the tennisCourts data as one whole object with an id key that is automatically generated
+    for (let courtName of Object.keys(data)) {
+      let docRef = await addDoc(collection(db1, "tennisCourts"), data[courtName]);
+      //console.log("Document written with ID: ", docRef.id);
+    }
+
+    // What we would rather do: access the tennisCourts collection 
+    // Loop through the data in our courts.json and add each court as a document one by one onto the tennisCourts
+    // tennisCourts : {"EVC": [], "EVHS": [], "Fowler": []}
+    console.log("Wrote all documents successfully");
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -64,12 +73,17 @@ const readData = async() => {
     // doc.data() is never undefined for query doc snapshots
     
     // for our collection called "tennisCourts" in firebase
-    // docs.map(doc): loop through all values. In our case, there is just one value, which is an object 
-    // This object has key "fSAgzz...", and value: a list of court objects.
-    let allData = doc.data();  // "fSAgzz..."
+    // docs.map(doc): loop through all values. In our case, there are multiple objects, each of them represents a court location with individual courts
+    let allData = doc.data();  // Each court location
+    // console.log("allData:", allData);
     
     //need to make sectionListData a global variable so we can call it in sectionList
-    let courtData = [];
+
+    let courts = Object.values(allData.courts);  // .map(courtObj => courtObj.name);  // for each courtObj, just get the name and add to array
+    let locationData = {title: allData.name, data: courts};  // {title: 'EVHS Courts', data: ['Court 1', 'Court 2', 'Court 3', 'Court 4', 'Court 5', 'Court 6']},
+    return locationData;
+
+    /*
     for (key in allData) {
       if (key !== 'default') {
         // allData[key].courts is a list of court objects from Firebase database
@@ -81,11 +95,10 @@ const readData = async() => {
         courtData.push(locationData);
       }
     }
-
-    return courtData;
+    */
   });
 
-  return sectionListData;  // TODO: hacky we should probably do this better
+  return sectionListData;  
 
   // [
   //   {title: 'EVHS Courts', data: ['Court 1', 'Court 2', 'Court 3', 'Court 4', 'Court 5', 'Court 6']},
@@ -103,13 +116,24 @@ export default class CourtsListScreen extends React.Component{
     }
   }
 
+  async updateData() {
+    functions.firestore.document('tennisCourts')
+      .onUpdate((change, context) => {
+        // Get an object representing the document
+        // e.g. {'name': 'Marie', 'age': 66}
+        const updatedCourts = change.after.data();
+        // perform desired operations ...
+        console.log("updatedCourts", updatedCourts)
+      });
+  }
+
 
   // This function always runs at the beginning of the component load
   // It's the "first thing that happens"
   componentDidMount() {
+    this.updateData()
     const readDataFunc = async() => {
       let data = await readData();
-
       // Every time state is updated, the component re-renders 
       // This means render() is called again
       // Render 1 (initial load): sectionListData is empty
@@ -135,36 +159,55 @@ export default class CourtsListScreen extends React.Component{
   // 03:24
   renderCourtRow(item) {
     const isSelected = this.props.route?.params?.name === item
-    let timeRemaining = item.timeRemaining + " sec remaining"
-    const isAvailable = item.timeRemaining === 0
-    if(isAvailable && isSelected === false){
-      timeRemaining = "Available";
+    let currentTime = Date.now()
+    
+    // TODO: convert firestore timestamp to javascript date?
+    // https://stackoverflow.com/questions/52247445/how-do-i-convert-a-firestore-date-timestamp-to-a-js-date
+    // let expirationTime = Date.parse(item.expirationTime.toDateString())  // create Date object //.toDate().toString()
+    let expirationTime = item.expirationTime
+    
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+    let timeRemaining = expirationTime - currentTime
+    //console.log(`timeRemaining:`, timeRemaining, typeof timeRemaining)
+    //console.log(`expirationTime:`, expirationTime, typeof expirationTime)
+    //console.log(`currentTime:`, currentTime, typeof currentTime)
+    
+    let timeRemainingHrs = Math.floor(timeRemaining/(1000*60*60))
+    let timeRemainingMins = Math.floor((timeRemaining%(1000*60*60))/(1000*60))
+    let timeRemainingString = timeRemainingHrs + " Hrs, " + timeRemainingMins + " Min"
+    if(timeRemainingHrs === 0){
+      timeRemainingString = timeRemainingMins + " Min"
+    }
+    else if (timeRemainingMins === 0) {
+      timeRemainingString = timeRemainingHrs + " Hrs"
+    }
+
+    if(timeRemaining <= 0 && isSelected === false){
       return (<View key = {item} style={styles.courtRow}>
         <Text style={styles.item}>{item.name}</Text>
-        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving')}>
-          <Text style={styles.item}>{timeRemaining}</Text>
+        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location })}>
+          <Text style={styles.item}>Available</Text>
         </TouchableOpacity>
       </View>)
     }
-    else if(isAvailable && isSelected) {
-      timeRemaining = "Available";
+    else if(timeRemaining <= 0 && isSelected) {
       return (<View key = {item} style={styles.courtRow}>
         <Text style={styles.boldItem}>{item.name}</Text>
-        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving')}>
-          <Text style={styles.boldItem}>{timeRemaining}</Text>
+        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location})}>
+          <Text style={styles.boldItem}>Available</Text>
         </TouchableOpacity>
       </View>)
     }
-    else if(isAvailable === false && isSelected) {
+    else if(timeRemaining > 0 && isSelected) {
       return (<View key = {item} style={styles.courtRow}>
           <Text style={styles.boldItem}>{item.name}</Text>
-          <Text style={styles.boldItem}>{timeRemaining}</Text>
+          <Text style={styles.boldItem}>{timeRemainingString}</Text>
       </View>)
     }
     else{
       return (<View key = {item} style={styles.courtRow}>
         <Text style={styles.item}>{item.name}</Text>
-        <Text style={styles.item}>{timeRemaining}</Text>
+        <Text style={styles.item}>{timeRemainingString}</Text>
     </View>)
     }
     //4 different cases:
@@ -177,7 +220,7 @@ export default class CourtsListScreen extends React.Component{
   render(){
     
     // const { name } = route?.params;
-    console.log('sectionListData', this.state.sectionListData);
+    // console.log('sectionListData', this.state.sectionListData);
     if(this.state.loading === true){
       return <View><Text>Loading...</Text></View>
     }
