@@ -1,7 +1,10 @@
 import React from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
-import { collection, addDoc, doc, getDocs } from "firebase/firestore"; 
-const functions = require('firebase-functions');
+import { collection, addDoc, doc, getDocs, onSnapshot, query } from "firebase/firestore"; 
+// import { functions } from "firebase/firestore-functions";
+// const functions = require('firebase-functions');
+
+//const functions = require('firebase-functions');  // TODO: maybe delete this if not working
 import * as data from '../courts';
 import { db1 } from '../firebaseConfig'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -116,22 +119,35 @@ export default class CourtsListScreen extends React.Component{
     }
   }
 
-  async updateData() {
-    functions.firestore.document('tennisCourts')
-      .onUpdate((change, context) => {
-        // Get an object representing the document
-        // e.g. {'name': 'Marie', 'age': 66}
-        const updatedCourts = change.after.data();
-        // perform desired operations ...
-        console.log("updatedCourts", updatedCourts)
+  async listenForData() {
+    // Reference: https://firebase.google.com/docs/firestore/query-data/listen
+    // Listen from entire collection rather than a single document
+    const q = query(collection(db1, "tennisCourts"));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      let sectionListData = querySnapshot.docs.map((doc) => {
+        
+        // for our collection called "tennisCourts" in firebase
+        // docs.map(doc): loop through all values. In our case, there are multiple objects, each of them represents a court location with individual courts
+        let allData = doc.data();  // Each court location
+    
+        let courts = Object.values(allData.courts);  // .map(courtObj => courtObj.name);  // for each courtObj, just get the name and add to array
+        let locationData = {title: allData.name, data: courts};  // {title: 'EVHS Courts', data: ['Court 1', 'Court 2', 'Court 3', 'Court 4', 'Court 5', 'Court 6']},
+        return locationData;
       });
+    
+      if (sectionListData) {
+        this.setState({
+          sectionListData: sectionListData
+        })
+      }
+  });
   }
-
 
   // This function always runs at the beginning of the component load
   // It's the "first thing that happens"
   componentDidMount() {
-    this.updateData()
+    // this.updateData();
+    this.listenForData();
     const readDataFunc = async() => {
       let data = await readData();
       // Every time state is updated, the component re-renders 
