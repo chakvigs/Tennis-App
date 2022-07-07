@@ -2,6 +2,7 @@ import * as React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
 import { Picker } from '@react-native-picker/picker';  // https://github.com/react-native-picker/picker
 import { db1 } from '../firebaseConfig';
+import { Ionicons } from '@expo/vector-icons';
 import { doc, collection, where, query, updateDoc, Timestamp, getDocs } from "firebase/firestore";
 
 
@@ -81,32 +82,45 @@ export default class ReservingScreen extends React.Component{
     render(){
         return(
         <View style = {styles.container}>
-            <Text style = {styles.titleText}>
-                How long will you use the court?
-            </Text>
-            <View style = {styles.timerContainer}>
-                <View style = {styles.totalPickerContainer}>
-                    <View style = {styles.pickerContainer}>
-                        <Picker 
-                            style = {styles.picker}
-                            itemStyle = {styles.pickerItem}
-                            selectedValue={this.state.hours}
-                            onValueChange={(itemValue, itemIndex) => this.updateHrs(itemValue)}>
-                            <Picker.Item label="1" value={1}/>
-                            <Picker.Item label="2" value={2}/>
-                            <Picker.Item label="3" value={3}/>
-                            <Picker.Item label="4" value={4}/>
-                        </Picker>
-                    </View>
+            <View style = {{
+                position: 'absolute',
+                top: 67,
+                left: 5,
+                zIndex: 1
+            }}>
+                <TouchableOpacity 
+                onPress = {() => this.props.navigation.goBack()}>
+                <Ionicons name='chevron-back' size={50} color='#F9F9F9'/>
+                </TouchableOpacity>
+            </View>
+            <View style = {styles.titleContainer}>
+                <Text style = {styles.titleText}>
+                    How long will you use the court?
+                </Text>
+            </View>
 
-                    <View style = {styles.pickerTextContainer}>
-                        <Text style = {styles.text}>
-                            hrs
-                        </Text>
-                    </View>
+            <View style = {styles.totalPickerContainerHrs}>
+                <View style = {styles.pickerContainer}>
+                    <Picker 
+                        style = {styles.picker}
+                        itemStyle = {styles.pickerItem}
+                        selectedValue={this.state.hours}
+                        onValueChange={(itemValue, itemIndex) => this.updateHrs(itemValue)}>
+                        <Picker.Item label="1" value={1}/>
+                        <Picker.Item label="2" value={2}/>
+                        <Picker.Item label="3" value={3}/>
+                        <Picker.Item label="4" value={4}/>
+                    </Picker>
                 </View>
-                
-                <View style = {styles.totalPickerContainer}>
+
+                <View style = {styles.pickerTextContainer}>
+                    <Text style = {styles.text}>
+                        hrs
+                    </Text>
+                </View>
+            </View>
+
+            <View style = {styles.totalPickerContainerMins}>
                     <View style = {styles.pickerContainer}>
                         <Picker
                             style = {styles.picker}
@@ -134,14 +148,16 @@ export default class ReservingScreen extends React.Component{
                         </Text>
                     </View>
                </View>
+            
+            <View style = {styles.buttonContainer}>
+                <TouchableOpacity 
+                onPress = {() => this.startTimerCallback()} 
+                style = {globalStyles.button}>
+                    <Text style = {globalStyles.buttonText}>
+                        Start Timer
+                    </Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity 
-            onPress = {() => this.startTimerCallback()} 
-            style = {globalStyles.button}>
-                <Text style = {globalStyles.buttonText}>
-                    Start Timer
-                </Text>
-            </TouchableOpacity>
         </View>)
     }
 }
@@ -149,50 +165,66 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     container:{
-        flex:1,
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#2D9DD7'
+        backgroundColor: '#2D9DD7',
+
     },
     titleText: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#F9F9F9'
+        color: '#F9F9F9',
     },
+    titleContainer: {
+        position: 'absolute',
+        top: 215
+    },
+
     text:{
         fontSize: 20,
         color: '#F9F9F9',
-        borderWidth: 2,
+        //borderWidth: 2,
+        top: 95
+    },
+    buttonContainer: {
+        position: 'absolute',
+        top: 515
     },
     picker: {
-        width: screenWidth/3,
-        height: screenHeight/3,
+        width: 125,
+        height: 225,
     },
     pickerItem: {
         color: 'white',
     },
     timerContainer: {
         flexDirection: 'row',
-  
     },
-    totalPickerContainer: {
+    totalPickerContainerHrs: {
         flex:1,
         flexDirection: 'row',
         justifyContent: 'center',
-        borderWidth: 2,
+        //borderWidth: 2,
         position: 'absolute',
-        top: screenHeight/3,
+        top: 250, // screenHeight/3,
+        left:10
+    },
+
+    totalPickerContainerMins: {
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        //borderWidth: 2,
+        position: 'absolute',
+        top: 250, // screenHeight/3,
+        right: 10
     },
 
     pickerContainer: {
-        borderWidth: 2,
+        //borderWidth: 2,
         borderColor: 'pink',
         alignItems: 'center',
-        justifyContent: 'center',
-        flex:1
     },
     pickerTextContainer: {
-        flex:1,
-        justifyContent: 'center'
     }
 })
