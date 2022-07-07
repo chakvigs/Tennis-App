@@ -88,39 +88,47 @@ export default class SignUpScreen extends React.Component {
   render() {
     return(
       <View style = {styles.container}>
-        <TextInput  style = {globalStyles.textInput}
-          placeholder="First Name"
-          onChangeText={text => this.setState({
-            firstName:text
-          })}/>
-        <TextInput style = {globalStyles.textInput}
-          placeholder="Last Name"
-          onChangeText={text => this.setState({
-            lastName:text
-          })}/>
-        <TextInput  style = {globalStyles.textInput}
-          placeholder="Email"
-          onChangeText={text => this.setState({
-            email:text
-          })}/>
-        <TextInput style = {globalStyles.textInput}
-          secureTextEntry = {true}  
-          placeholder="Password"
-          onChangeText={text => this.setState({
-            password:text
-          })}/>
+        <View style={styles.textInputContainer}>
+          <TextInput style = {globalStyles.textInput}
+            placeholder="First Name"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              firstName:text
+            })}/>
+          <TextInput style = {globalStyles.textInput}
+            placeholder="Last Name"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              lastName:text
+            })}/>
+          <TextInput  style = {globalStyles.textInput}
+            placeholder="Email"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              email:text
+            })}/>
+          <TextInput style = {globalStyles.textInput}
+            secureTextEntry = {true}  
+            placeholder="Password"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              password:text
+            })}/>
+          <TextInput style = {globalStyles.textInput}
+            secureTextEntry = {true}  
+            placeholder="Re-enter Password"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              password2:text
+            })}/>
+        </View>
 
-        <TextInput style = {globalStyles.textInput}
-          secureTextEntry = {true}  
-          placeholder="Re-enter Password"
-          onChangeText={text => this.setState({
-            password2:text
-          })}/>
-
-        <TouchableOpacity style = {globalStyles.button}
-          onPress ={() => this.signUpButtonCallback()}>
-          <Text>Sign Up</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style = {globalStyles.button}
+            onPress ={() => this.signUpButtonCallback()}>
+            <Text style = {styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -131,5 +139,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#2D9DD7'
   },
+
+  textInputContainer: {
+
+  },
+
+  buttonText: {
+    fontSize: 18,
+    color: '#F9F9F9'
+  },
+  
+  buttonContainer: {
+    marginTop: 10
+  }
 })

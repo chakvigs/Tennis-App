@@ -18,29 +18,37 @@ export default class LoginScreen extends React.Component {
   render(){
     return(
       <View style = {styles.container}>
-        <TextInput  style = {globalStyles.textInput}
-          placeholder="Email"
-          onChangeText={text => this.setState({
-            email:text
-          })}/>
-        <TextInput 
-          style = {globalStyles.textInput}
-          secureTextEntry = {true} 
-          placeholder="Password"
-          onChangeText={text => this.setState({
-            password:text
-          })}/>
+        <View style = {styles.textInputContainer}>
+          <TextInput  style = {globalStyles.textInput}
+            placeholder="Email"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              email:text
+            })}/>
+          <TextInput 
+            style = {globalStyles.textInput}
+            secureTextEntry = {true} 
+            placeholder="Password"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              password:text
+            })}/>
+        </View>
 
-        <TouchableOpacity style = {globalStyles.button}
-          onPress = {() => this.logInCallback()}
-        >
-          <Text>Log In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
-          <Text style = {styles.text}>
-            Forgot Password?
-          </Text>
-        </TouchableOpacity>
+        <View style = {styles.buttonContainer}>
+          <TouchableOpacity style = {globalStyles.button}
+            onPress = {() => this.logInCallback()}>
+            <Text style = {styles.buttonText}>Log In</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style = {styles.forgotPassContainer}>
+          <TouchableOpacity onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
+            <Text style = {styles.text}>
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -50,9 +58,24 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#2D9DD7'
   },
   text: {
-    color: 'blue',
-  }
+    color: '#F9F9F9',
+    textDecorationLine: 'underline'
+  },
+
+  buttonText: {
+    fontSize: 18,
+    color: '#F9F9F9'
+  },
+
+  buttonContainer: {
+    marginTop: 10
+  },
+
+  forgotPassContainer: {
+    marginTop: 10
+  },
 })

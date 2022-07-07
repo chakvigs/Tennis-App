@@ -23,53 +23,28 @@ export default class LandingScreen extends React.Component {
           onChangeText={text => this.setState({
             password:text
           })}/>*/}
-        <View style = {styles.imageContainer}>
+        <View style={styles.imageContainer}>
           <Image style = {styles.logoImage} source = {require('../assets/tennisCourtLogo.png')}/>
         </View>
-        <Text style = {styles.text}>
-          Tennis App
-        </Text>
-        <TouchableOpacity
-          onPress = {() => this.props.navigation.navigate('Login')}
-          style = {styles.button}
-        >
-          <Text style = {styles.text}>Log In</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity style = {styles.button}
-          onPress = {() => this.props.navigation.navigate('SignUp')}
-        >
-          <Text style = {styles.text}>Sign Up</Text>
-        </TouchableOpacity>
-        {/*<TouchableOpacity
-          onPress = {() => this.props.navigation.navigate('ForgotPassword')}
-        >
-          <Text>Forgot Password?</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => Linking.openURL('https://accounts.google.com/AccountChooser/signinchooser?flowName=GlifWebSignIn&flowEntry=AccountChooser')}>
-          <Text style={{color: 'black'}}>
-            
-            Sign in with Google
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>
+            Tennis App
           </Text>
-        </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity>
-          <Text style={{color: 'black'}}
-            onPress={() => Linking.openURL('https://www.facebook.com/?stype=lo&jlou=Afe4sHy6S38VTLYrtyf8C52HZ9yxppGu0nT4Re9HZTM8xoAEj1lwK0d96MgFXI64-P1N8bzJTcNi5PevzAOeDnMg&smuh=4006&lh=Ac-zjAHN7A0oHm2u9o8')}>
-            Sign in with Facebook
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress = {() => this.props.navigation.navigate('MapContainer')}
-        >
-          <Text>Map Screen</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress = {() => this.props.navigation.navigate('CourtsListScreen')}
-        >
-          <Text>Courts List Screen</Text>
-        </TouchableOpacity>*/}
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Login')}
+            style={styles.button}>
+            <Text style={styles.buttonText}>Log In</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style = {styles.button}
+            onPress = {() => this.props.navigation.navigate('SignUp')}>
+            <Text style = {styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+      </View>  
     </View>
     )
   }
@@ -79,25 +54,41 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#2D9DD7'
   },
   button: {
     marginTop: 10,
     padding: 10,
-    backgroundColor: 'gray',
+    backgroundColor: '#6FC34A',
     width: screen.width/3,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 20
   },
-  text: {
-    fontSize: 25
+  titleText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#F9F9F9'
   },
+
+  buttonText: {
+    fontSize: 18,
+    color: '#F9F9F9'
+  },
+
   imageContainer: {
-    
+    marginBottom: 30
   },
   logoImage: {
-    width: screen.width/3,
+    width: screen.width/2,
     aspectRatio: 1,
     height: undefined
+  },
+  titleContainer: {
+    padding:10
+  },
+  buttonContainer: {
+    marginBottom: 50
   }
 })

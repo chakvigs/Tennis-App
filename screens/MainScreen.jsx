@@ -15,43 +15,68 @@ export default class HomeScreen extends React.Component{
 
     render() {
         return(
-        <View style = {{
-            flex:1,
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <TouchableOpacity style = {globalStyles.button}
-            onPress = {() => this.props.navigation.navigate('MapContainer')}>
-                <Text style = {globalStyles.text}>
-                    Map View
+        <View style = {styles.container}>
+            <View style={styles.titleContainer}>
+                <Text style={globalStyles.titleText}>
+                    Court Selection
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style = {globalStyles.button}
-            onPress = {() => this.props.navigation.navigate('CourtsList')}>
-                <Text style = {globalStyles.text}>
-                    List View
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style = {styles.button}
-            onPress = {() => this.signOutButtonCallback()}>
-                <Text>
-                    Sign out
-                </Text>
-            </TouchableOpacity>
+            </View>
+            
+            <View style = {styles.buttonContainer}>
+                <TouchableOpacity style = {[globalStyles.button, styles.button]}
+                onPress = {() => this.props.navigation.navigate('MapContainer')}>
+                    <Text style = {globalStyles.buttonText}>
+                        Map
+                    </Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style = {[globalStyles.button, styles.button]}
+                onPress = {() => this.props.navigation.navigate('CourtsList')}>
+                    <Text style = {globalStyles.buttonText}>
+                        Courts
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style = {[globalStyles.button, styles.signOutButton]}
+                onPress = {() => this.signOutButtonCallback()}>
+                    <Text style = {globalStyles.buttonText}>
+                        Sign Out
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    button: {
-        marginTop: 30,
-        padding: 13,
-        backgroundColor: 'gray',
-        width: screen.width/3,
+    container: {
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#2D9DD7',
+    },
+
+    signOutButton: {
+        marginTop: 25,
         backgroundColor: 'red',
-        borderRadius: 20
-      },
+    },
+
+    button: {
+        marginTop: 10,
+    },
+
+    titleContainer: {
+        padding: 10,
+        flex: 0.1,
+        //borderWidth: 2,
+        borderColor: 'pink'
+    },
+    buttonContainer: {
+        flex: 0.20,
+        //borderWidth: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: 'white'
+    }
 })

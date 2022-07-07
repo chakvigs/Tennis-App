@@ -29,15 +29,20 @@ export default class ForgotPassword extends React.Component {
   render() {
     return(
       <View style = {styles.container}>
-        <TextInput style = {globalStyles.textInput}
-          placeholder="Email"
-          onChangeText={text => this.setState({
-            email:text
-          })}/>
-        <TouchableOpacity style = {globalStyles.button}
-        onPress = {() => this.forgotPasswordFunctionCallback()}>
-          <Text>Send Email</Text>
-        </TouchableOpacity>
+        <View>
+          <TextInput style = {globalStyles.textInput}
+            placeholder="Email"
+            placeholderTextColor={'#dbd9d9'}
+            onChangeText={text => this.setState({
+              email:text})}/>
+        </View>
+
+        <View style = {styles.buttonContainer}>
+          <TouchableOpacity style = {globalStyles.button}
+          onPress = {() => this.forgotPasswordFunctionCallback()}>
+            <Text style = {styles.buttonText}>Send Email</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -47,6 +52,16 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#2D9DD7'
   },
+
+  buttonText: {
+    fontSize: 18,
+    color: '#F9F9F9'
+  },
+  
+  buttonContainer: {
+    marginTop: 10
+  }
 })

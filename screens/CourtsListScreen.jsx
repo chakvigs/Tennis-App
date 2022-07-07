@@ -1,47 +1,12 @@
 import React from 'react';
+import { Ionicons } from '@expo/vector-icons'
 import { SectionList, StyleSheet, Text, View } from 'react-native';
 import { collection, addDoc, doc, getDocs, onSnapshot, query } from "firebase/firestore"; 
-// import { functions } from "firebase/firestore-functions";
-// const functions = require('firebase-functions');
 
-//const functions = require('firebase-functions');  // TODO: maybe delete this if not working
 import * as data from '../courts';
 import { db1 } from '../firebaseConfig'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import globalStyles from '../styles';
-
-const styles = StyleSheet.create({
-  container: {
-   flex: 1,
-   paddingTop: 22
-  },
-  sectionHeader: {
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(247,247,247,1.0)',
-  },
-  item: {
-    padding: 10,
-    height: 44,
-    fontSize: 18,
-  },
-  boldItem: {
-    padding: 10,
-    height: 44,
-    fontSize: 18,
-    backgroundColor: 'yellow',
-  },
-  courtRow:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-    paddingRight: 10
-  }
-})
 
 const writeData = async() => {
   try {
@@ -113,6 +78,15 @@ const readData = async() => {
 export default class CourtsListScreen extends React.Component{
   constructor(props){
     super(props)
+
+    //use to bring court names, ID, and scroll position from MapContainer
+    if (props.route.params) {
+      this.name = props.route.params.name 
+      this.id = props.route.params.id 
+      this.position = props.route.params.position
+      console.log("navigation props from MapContainer", this.name, this.id, this.position);
+    }
+
     this.state = {
       sectionListData: [],
       loading: true
@@ -146,7 +120,6 @@ export default class CourtsListScreen extends React.Component{
   // This function always runs at the beginning of the component load
   // It's the "first thing that happens"
   componentDidMount() {
-    // this.updateData();
     this.listenForData();
     const readDataFunc = async() => {
       let data = await readData();
@@ -163,18 +136,10 @@ export default class CourtsListScreen extends React.Component{
     readDataFunc();
   }
 
-  //use to bring court names, ID, and scroll position from MapContainer
-  /*
-    const { name, id, position } = props.route.params;
-    console.log(name)
-    console.log(id)
-    console.log(position)
-  */
-
   // 3h, 24s
   // 03:24
   renderCourtRow(item) {
-    const isSelected = this.props.route?.params?.name === item
+    const isSelected = this.name === item.name
     let currentTime = Date.now()
     
     // TODO: convert firestore timestamp to javascript date?
@@ -207,17 +172,23 @@ export default class CourtsListScreen extends React.Component{
       </View>)
     }
     else if(timeRemaining <= 0 && isSelected) {
-      return (<View key = {item} style={styles.courtRow}>
-        <Text style={styles.boldItem}>{item.name}</Text>
+      return (<View key = {item} style={styles.selectedCourtRow}>
+        <View style = {styles.selectedCourtContainer}>
+          <Ionicons name='ios-chevron-forward-circle-outline' size={35} color='black'/>
+          <Text style={[styles.item, styles.selectedCourtText]}>{item.name}</Text>
+        </View>
         <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location})}>
-          <Text style={styles.boldItem}>Available</Text>
+          <Text style={styles.item}>Available</Text>
         </TouchableOpacity>
       </View>)
     }
     else if(timeRemaining > 0 && isSelected) {
-      return (<View key = {item} style={styles.courtRow}>
-          <Text style={styles.boldItem}>{item.name}</Text>
-          <Text style={styles.boldItem}>{timeRemainingString}</Text>
+      return (<View key = {item} style={styles.selectedCourtRow}>
+          <View style = {styles.selectedCourtContainer}>
+            <Ionicons name='ios-chevron-forward-circle-outline' size={35} color='black'/>
+            <Text style={[styles.item, styles.selectedCourtText]}>{item.name}</Text>
+          </View>
+          <Text style={styles.selectedTimeRemaining}>{timeRemainingString}</Text>
       </View>)
     }
     else{
@@ -243,23 +214,144 @@ export default class CourtsListScreen extends React.Component{
 
     return (
       <View style={styles.container}>
+        {/*
         <TouchableOpacity style = {globalStyles.button} onPress={() => writeData()}>
           <Text>
             Write Data
           </Text>
         </TouchableOpacity>
+        
         <TouchableOpacity style = {globalStyles.button} onPress={() => readData()}>
           <Text>
             Read Data
           </Text>
         </TouchableOpacity>
-        <SectionList
-          sections={this.state.sectionListData}
-          renderItem={({item}) => this.renderCourtRow(item)}
-          renderSectionHeader={({section}) => <Text key = {section.title} style={styles.sectionHeader}>{section.title}</Text>}
-          keyExtractor={(item, index) => index}
-        />
+        */}
+        
+        <View style = {styles.headerContainer}>
+          <View style = {styles.backIconContainer}>
+            <TouchableOpacity 
+              onPress = {() => this.props.navigation.goBack()}>
+              <Ionicons name='chevron-back' size={45} color='#F9F9F9'/>
+            </TouchableOpacity>
+          </View>
+
+          <View style = {styles.titleContainer}>
+            <Text style = {styles.titleText}>
+              List of Courts
+            </Text>
+          </View>
+
+          <View style = {styles.headerSpaceContainer}>
+          </View>
+        </View>
+        
+        <View style = {styles.dataContainer}>
+          <SectionList
+            sections={this.state.sectionListData}
+            renderItem={({item}) => this.renderCourtRow(item)}
+            renderSectionHeader={({section}) => <Text key = {section.title} style={styles.sectionHeader}>{section.title}</Text>}
+            keyExtractor={(item, index) => index}
+          />
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingTop: 22,
+   backgroundColor: '#2D9DD7'
+  },
+  sectionHeader: {
+    paddingTop: 10,
+    paddingLeft: 15,
+    paddingRight: 10,
+    paddingBottom: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#F9F9F9',
+    backgroundColor: '#268abf',
+    marginBottom: 10
+  },
+  item: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    height: 44,
+    fontSize: 18,
+    color: '#F9F9F9'
+  },
+  selectedTimeRemaining: {
+    padding: 10,
+    height: 44,
+    fontSize: 18,
+    //backgroundColor: 'yellow',
+  },
+  courtRow:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+    paddingRight: 10
+  },
+
+  selectedCourtRow:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    marginBottom: 10,
+    //paddingRight: 10,
+    //backgroundColor: "#f2f2f2",
+    fontWeight: "bold",
+    color: 'black',
+    marginHorizontal: 10
+  },
+
+  selectedCourtText: {
+    //backgroundColor: "#f2f2f2",
+    fontWeight: "bold",
+    color: 'black',
+    fontSize: 19,
+    marginLeft: -10
+  },
+
+  headerContainer: {
+    paddingLeft:15,
+    paddingTop: 20,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+
+  titleText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#F9F9F9'
+  },
+
+  dataContainer: {
+    flex: 11
+  },
+
+  selectedCourtContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  backIconContainer: {
+    flex: 1,
+    marginLeft: -10
+  },
+
+  titleContainer: {
+    flex: 3,
+    alignItems: 'center',
+  },
+
+  headerSpaceContainer: {
+    flex: 1,
+    alignItems: 'center',
+  }
+})
