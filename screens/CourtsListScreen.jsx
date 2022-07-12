@@ -204,13 +204,13 @@ const CourtsListScreen = ({ navigation, route }) => {
     <View><Text>Loading...</Text></View>
     :
     <View style={styles.container}>
-      
+      {/*
       <TouchableOpacity style = {globalStyles.button} onPress={() => writeData()}>
         <Text>
           Write Data
         </Text>
       </TouchableOpacity>
-      {/*
+      
       <TouchableOpacity style = {globalStyles.button} onPress={() => readData()}>
         <Text>
           Read Data
@@ -242,7 +242,7 @@ const CourtsListScreen = ({ navigation, route }) => {
           ref={sectionListRef}
           initialScrollIndex={0}
           onScrollToIndexFailed={(info) => {
-            const wait = new Promise(resolve => setTimeout(resolve, 200));
+            const wait = new Promise(resolve => setTimeout(resolve, 100));
             wait.then(() => {
               sectionListRef.current?.scrollToLocation({sectionIndex: locationId, itemIndex: courtId});
             });
