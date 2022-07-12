@@ -1,11 +1,45 @@
-{
+  
+{ 
+    "Fowler Creek": {
+        "locationId": 2,
+        "description": "",
+        "name": "Fowler Creek",
+        "courts": {
+            "1":{
+                "name": "Fowler Creek Court 1",
+                "internalName": "fowler1",
+                "location": "Fowler Creek",
+                "id": 0,
+                "locationId": 2,
+                "expirationTime": 1654636034554
+            },
+            "2":{
+                "name": "Fowler Creek Court 2",
+                "internalName": "fowler2",
+                "location": "Fowler Creek",
+                "id": 1,
+                "locationId": 2,
+                "expirationTime": 1654636034554
+            },
+            "3":{
+                "name": "Fowler Creek Court 3",
+                "internalName": "fowler3",
+                "location": "Fowler Creek",
+                "id": 2,
+                "locationId": 2,
+                "expirationTime": 1654636034554
+            }
+        }
+    },
     "EVHS": {
+        "locationId": 1,
         "description": "",
         "name": "EVHS",
         "courts": {
             "1": {
                 "name": "EVHS Court 1",
-                "id": "1",
+                "id": 0,
+                "locationId": 1,
                 "internalName": "evhs1",
                 "location": "EVHS",
                 "expirationTime": 1654636034554
@@ -14,40 +48,46 @@
                 "name": "EVHS Court 2",
                 "internalName": "evhs2",
                 "location": "EVHS",
-                "id": "2",
+                "id": 1,
+                "locationId": 1,
                 "expirationTime": 1654636034554
             },
             "3": {
                 "name": "EVHS Court 3",
                 "internalName": "evhs3",
                 "location": "EVHS",
-                "id": "3",
+                "id": 2,
+                "locationId": 1,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "EVHS Court 4",
                 "internalName": "evhs4",
-                "id": "4",
+                "id": 3,
+                "locationId": 1,
                 "location": "EVHS",
                 "expirationTime": 1654636034554
             },
             "5": {
                 "name": "EVHS Court 5",
                 "internalName": "evhs5",
-                "id": "5",
+                "id": 4,
+                "locationId": 1,
                 "location": "EVHS",
                 "expirationTime": 1654636034554
             },
             "6": {
                 "name": "EVHS Court 6",
                 "internalName": "evhs6",
-                "id": "6",
+                "id": 5,
+                "locationId": 1,
                 "location": "EVHS",
                 "expirationTime": 1654636034554
             }
         }
     },
     "EVC": {
+        "locationId": 0,
         "description": "",
         "name": "EVC",
         "courts": {
@@ -55,85 +95,66 @@
                 "name": "EVC Court 1",
                 "internalName": "evc1",
                 "location": "EVC",
-                "id": "1",
+                "id": 0,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "2": {
                 "name": "EVC Court 2",
                 "internalName": "evc2",
                 "location": "EVC",
-                "id": "2",
+                "id": 1,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "3": {
                 "name": "EVC Court 3",
                 "internalName": "evc3",
                 "location": "EVC",
-                "id": "3",
+                "id": 2,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "EVC Court 4",
                 "location": "EVC",
                 "internalName": "evc4",
-                "id": "4",
+                "id": 3,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "5": {
                 "name": "EVC Court 5",
                 "location": "EVC",
                 "internalName": "evc5",
-                "id": "5",
+                "id": 4,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "6": {
                 "name": "EVC Court 6",
                 "location": "EVC",
                 "internalName": "evc6",
-                "id": "6",
+                "id": 5,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "7": {
                 "name": "EVC Court 7",
                 "location": "EVC",
                 "internalName": "evc7",
-                "id": "7",
+                "id": 6,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             },
             "8": {
                 "name": "EVC Court 8",
                 "internalName": "evc8",
                 "location": "EVC",
-                "id": "8",
+                "id": 7,
+                "locationId": 0,
                 "expirationTime": 1654636034554
             }
         }  
-    },
-    "Fowler Creek": {
-        "description": "",
-        "name": "Fowler Creek",
-        "courts": {
-            "1":{
-                "name": "Fowler Creek Court 1",
-                "internalName": "fowler1",
-                "location": "Fowler Creek",
-                "id": "1",
-                "expirationTime": 1654636034554
-            },
-            "2":{
-                "name": "Fowler Creek Court 2",
-                "internalName": "fowler2",
-                "location": "Fowler Creek",
-                "id": "2",
-                "expirationTime": 1654636034554
-            },
-            "3":{
-                "name": "Fowler Creek Court 3",
-                "internalName": "fowler3",
-                "location": "Fowler Creek",
-                "id": "3",
-                "expirationTime": 1654636034554
-            }
-        }
     }
 }

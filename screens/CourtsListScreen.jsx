@@ -1,8 +1,7 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons'
 import { SectionList, StyleSheet, Text, View } from 'react-native';
-import { collection, addDoc, doc, getDocs, onSnapshot, query } from "firebase/firestore"; 
-
+import { collection, addDoc, doc, getDocs, onSnapshot, query, orderBy } from "firebase/firestore"; 
 import * as data from '../courts';
 import { db1 } from '../firebaseConfig'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -26,7 +25,7 @@ const writeData = async() => {
 }
 
 const readData = async() => {
-  const querySnapshot = await getDocs(collection(db1, "tennisCourts"));
+  const querySnapshot = await getDocs(collection(db1, "tennisCourts"), orderBy('name', 'asc'));
   // .forEach()does not allow you to directly return values, 
   // .map() returns an array 
 
@@ -75,71 +74,65 @@ const readData = async() => {
   // ]
 }
 
-export default class CourtsListScreen extends React.Component{
-  constructor(props){
-    super(props)
+const CourtsListScreen = ({ navigation, route }) => {
+    // navigation props from MapContainer
+    // props.navigation.navigate('CourtsList', {
+    //   name: name,
+    //   locationId: locationId,
+    //   courtId: id
+    // })
 
-    //use to bring court names, ID, and scroll position from MapContainer
-    if (props.route.params) {
-      this.name = props.route.params.name 
-      this.id = props.route.params.id 
-      this.position = props.route.params.position
-      console.log("navigation props from MapContainer", this.name, this.id, this.position);
-    }
+    // use to bring court names, ID, and scroll position from MapContainer
+    const name = route.params ? route.params.name : ""
+    const locationId = route.params ? route.params.locationId : 0
+    const courtId = route.params ? route.params.courtId : 0
+    console.log("navigation props from MapContainer", name, locationId, courtId);
 
-    this.state = {
-      sectionListData: [],
-      loading: true
-    }
-  }
+    const sectionListRef = React.useRef(null);
+    const [sectionListData, setSectionListData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
-  async listenForData() {
-    // Reference: https://firebase.google.com/docs/firestore/query-data/listen
-    // Listen from entire collection rather than a single document
-    const q = query(collection(db1, "tennisCourts"));
-    const unsub = onSnapshot(q, (querySnapshot) => {
-      let sectionListData = querySnapshot.docs.map((doc) => {
-        
-        // for our collection called "tennisCourts" in firebase
-        // docs.map(doc): loop through all values. In our case, there are multiple objects, each of them represents a court location with individual courts
-        let allData = doc.data();  // Each court location
-    
-        let courts = Object.values(allData.courts);  // .map(courtObj => courtObj.name);  // for each courtObj, just get the name and add to array
-        let locationData = {title: allData.name, data: courts};  // {title: 'EVHS Courts', data: ['Court 1', 'Court 2', 'Court 3', 'Court 4', 'Court 5', 'Court 6']},
-        return locationData;
-      });
-    
-      if (sectionListData) {
-        this.setState({
-          sectionListData: sectionListData
-        })
-      }
-  });
+    const listenForData = async () => {
+      // Reference: https://firebase.google.com/docs/firestore/query-data/listen
+      // Listen from entire collection rather than a single document
+      const q = query(collection(db1, "tennisCourts"), orderBy("name"));
+      
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        let sectionListData = querySnapshot.docs.map((doc) => {
+          
+          // for our collection called "tennisCourts" in firebase
+          // docs.map(doc): loop through all values. In our case, there are multiple objects, each of them represents a court location with individual courts
+          let allData = doc.data();  // Each court location
+      
+          let courts = Object.values(allData.courts);  // .map(courtObj => courtObj.name);  // for each courtObj, just get the name and add to array
+          let locationData = {title: allData.name, data: courts};  // {title: 'EVHS Courts', data: ['Court 1', 'Court 2', 'Court 3', 'Court 4', 'Court 5', 'Court 6']},
+          return locationData;
+        });
+      
+        if (sectionListData) {
+          setSectionListData(sectionListData);
+          setLoading(false);
+        }
+    });
   }
 
   // This function always runs at the beginning of the component load
   // It's the "first thing that happens"
-  componentDidMount() {
-    this.listenForData();
-    const readDataFunc = async() => {
-      let data = await readData();
-      // Every time state is updated, the component re-renders 
-      // This means render() is called again
-      // Render 1 (initial load): sectionListData is empty
-      // Render 2 (after data is loaded): sectionListData is populated
-      this.setState({
-        sectionListData: data, 
-        loading: false
-      })
+  React.useEffect(() => {
+    listenForData();
+  }, []);  // [] means run this function once only
+
+  React.useEffect(() => {
+    if (sectionListRef && sectionListRef.current && loading === false) {
+      sectionListRef.current.scrollToLocation({sectionIndex: locationId, itemIndex: courtId})  // TODO: make sure updates more than once
+      // sectionListRef.current.scrollToLocation({sectionIndex: 2, itemIndex: 2})  // TODO: make sure updates more than once
     }
-    
-    readDataFunc();
-  }
+  }, [loading]);  // run this function whenever loading state changes
 
   // 3h, 24s
   // 03:24
-  renderCourtRow(item) {
-    const isSelected = this.name === item.name
+  const renderCourtRow = (item) => {
+    const isSelected = name ? name === item.name : false  // ternary operator ? is the if case, : is the else case
     let currentTime = Date.now()
     
     // TODO: convert firestore timestamp to javascript date?
@@ -166,7 +159,7 @@ export default class CourtsListScreen extends React.Component{
     if(timeRemaining <= 0 && isSelected === false){
       return (<View key = {item} style={styles.courtRow}>
         <Text style={styles.item}>{item.name}</Text>
-        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location })}>
+        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location })}>
           <Text style={styles.item}>Available</Text>
         </TouchableOpacity>
       </View>)
@@ -177,7 +170,7 @@ export default class CourtsListScreen extends React.Component{
           <Ionicons name='ios-chevron-forward-circle-outline' size={35} color='black'/>
           <Text style={[styles.item, styles.selectedCourtText]}>{item.name}</Text>
         </View>
-        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => this.props.navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location})}>
+        <TouchableOpacity style = {globalStyles.smallButton} onPress = {() => navigation.navigate('Reserving', { "name": item.name, "id": item.id, "location": item.location})}>
           <Text style={styles.item}>Available</Text>
         </TouchableOpacity>
       </View>)
@@ -203,60 +196,66 @@ export default class CourtsListScreen extends React.Component{
     // not selected and available
     // not selected and not available
   }
- 
-  render(){
     
     // const { name } = route?.params;
     // console.log('sectionListData', this.state.sectionListData);
-    if(this.state.loading === true){
-      return <View><Text>Loading...</Text></View>
-    }
-
-    return (
-      <View style={styles.container}>
-        {/*
-        <TouchableOpacity style = {globalStyles.button} onPress={() => writeData()}>
-          <Text>
-            Write Data
-          </Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style = {globalStyles.button} onPress={() => readData()}>
-          <Text>
-            Read Data
-          </Text>
-        </TouchableOpacity>
-        */}
-        
-        <View style = {styles.headerContainer}>
-          <View style = {styles.backIconContainer}>
-            <TouchableOpacity 
-              onPress = {() => this.props.navigation.goBack()}>
-              <Ionicons name='chevron-back' size={45} color='#F9F9F9'/>
-            </TouchableOpacity>
-          </View>
-
-          <View style = {styles.titleContainer}>
-            <Text style = {styles.titleText}>
-              List of Courts
-            </Text>
-          </View>
-
-          <View style = {styles.headerSpaceContainer}>
-          </View>
+  return(
+    loading 
+    ?
+    <View><Text>Loading...</Text></View>
+    :
+    <View style={styles.container}>
+      
+      <TouchableOpacity style = {globalStyles.button} onPress={() => writeData()}>
+        <Text>
+          Write Data
+        </Text>
+      </TouchableOpacity>
+      {/*
+      <TouchableOpacity style = {globalStyles.button} onPress={() => readData()}>
+        <Text>
+          Read Data
+        </Text>
+      </TouchableOpacity> navigation.goBack()
+      */}
+      
+      <View style = {styles.headerContainer}>
+        <View style = {styles.backIconContainer}>
+          <TouchableOpacity 
+            onPress={() => sectionListRef.current.scrollToLocation({sectionIndex: 2, itemIndex: 2})}
+          >
+            <Ionicons name='chevron-back' size={45} color='#F9F9F9'/>
+          </TouchableOpacity>
         </View>
-        
-        <View style = {styles.dataContainer}>
-          <SectionList
-            sections={this.state.sectionListData}
-            renderItem={({item}) => this.renderCourtRow(item)}
-            renderSectionHeader={({section}) => <Text key = {section.title} style={styles.sectionHeader}>{section.title}</Text>}
-            keyExtractor={(item, index) => index}
-          />
+
+        <View style = {styles.titleContainer}>
+          <Text style = {styles.titleText}>
+            List of Courts
+          </Text>
+        </View>
+
+        <View style = {styles.headerSpaceContainer}>
         </View>
       </View>
-    );
-  }
+      
+      <View style = {styles.dataContainer}>
+        <SectionList
+          ref={sectionListRef}
+          initialScrollIndex={0}
+          onScrollToIndexFailed={(info) => {
+            const wait = new Promise(resolve => setTimeout(resolve, 500));
+            wait.then(() => {
+              sectionListRef.current?.scrollToLocation({sectionIndex: 2, itemIndex: 2});
+            });
+          }}
+          sections={sectionListData}
+          renderItem={({item}) => renderCourtRow(item)}
+          renderSectionHeader={({section}) => <Text key = {section.title} style={styles.sectionHeader}>{section.title}</Text>}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -355,3 +354,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 })
+
+export default CourtsListScreen;
