@@ -124,8 +124,7 @@ const CourtsListScreen = ({ navigation, route }) => {
 
   React.useEffect(() => {
     if (sectionListRef && sectionListRef.current && loading === false) {
-      sectionListRef.current.scrollToLocation({sectionIndex: locationId, itemIndex: courtId})  // TODO: make sure updates more than once
-      // sectionListRef.current.scrollToLocation({sectionIndex: 2, itemIndex: 2})  // TODO: make sure updates more than once
+      sectionListRef.current.scrollToLocation({sectionIndex: locationId, itemIndex: courtId});
     }
   }, [loading]);  // run this function whenever loading state changes
 
@@ -216,13 +215,13 @@ const CourtsListScreen = ({ navigation, route }) => {
         <Text>
           Read Data
         </Text>
-      </TouchableOpacity> navigation.goBack()
+      </TouchableOpacity> 
       */}
       
       <View style = {styles.headerContainer}>
         <View style = {styles.backIconContainer}>
           <TouchableOpacity 
-            onPress={() => sectionListRef.current.scrollToLocation({sectionIndex: 2, itemIndex: 2})}
+            onPress={() => navigation.goBack()}
           >
             <Ionicons name='chevron-back' size={45} color='#F9F9F9'/>
           </TouchableOpacity>
@@ -243,9 +242,9 @@ const CourtsListScreen = ({ navigation, route }) => {
           ref={sectionListRef}
           initialScrollIndex={0}
           onScrollToIndexFailed={(info) => {
-            const wait = new Promise(resolve => setTimeout(resolve, 500));
+            const wait = new Promise(resolve => setTimeout(resolve, 200));
             wait.then(() => {
-              sectionListRef.current?.scrollToLocation({sectionIndex: 2, itemIndex: 2});
+              sectionListRef.current?.scrollToLocation({sectionIndex: locationId, itemIndex: courtId});
             });
           }}
           sections={sectionListData}
