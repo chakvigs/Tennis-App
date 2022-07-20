@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "my-tennis-app",
-    "slug": "my-tennis-app",
-    "version": "1.0.0",
+    "name": "Tennis Court Buddy",
+    "slug": "tennis-court-buddy",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,7 +17,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.chakvigs.mytennisapp"
     },
     "android": {
