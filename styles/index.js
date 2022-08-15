@@ -6,7 +6,7 @@ const globalStyles = {
   textInput: {
     borderWidth: 1,
     borderColor: '#dbd9d9',
-    width: 200,
+    width: 250,
     padding: 10,
     marginVertical: 5,
     fontSize: 20,
