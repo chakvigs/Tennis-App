@@ -199,7 +199,7 @@ const CourtsListScreen = ({ navigation, route }) => {
     // const { name } = route?.params;
     // console.log('sectionListData', this.state.sectionListData);
     /*return(
-      <View style = {{alignItems: 'center', justifyContent: 'center', flex:}}>
+      <View style = {{alignItems: 'center', justifyContent: 'center', flex:1}}>
         <TouchableOpacity style = {globalStyles.button} onPress={() => writeData()}>
         <Text>
           Write Data
@@ -245,7 +245,7 @@ const CourtsListScreen = ({ navigation, route }) => {
       <View style = {styles.dataContainer}>
         <SectionList
           ref={sectionListRef}
-          //initialScrollIndex={0}
+          initialScrollIndex={0}
           onScrollToIndexFailed={(info) => {
             const wait = new Promise(resolve => setTimeout(resolve, 100));
             wait.then(() => {

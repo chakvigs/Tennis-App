@@ -143,7 +143,7 @@
                 "name": "EVC Court 7",
                 "location": "Evergreen Valley College",
                 "internalName": "evc7",
-                "id": 6,
+                "id": 7,
                 "locationId": 0,
                 "expirationTime": 1654636034554
             },
@@ -151,7 +151,7 @@
                 "name": "EVC Court 8",
                 "internalName": "evc8",
                 "location": "Evergreen Valley College",
-                "id": 7,
+                "id": 8,
                 "locationId": 0,
                 "expirationTime": 1654636034554
             }
@@ -214,7 +214,7 @@
                 "name": "Cataldi Park Court 7",
                 "internalName": "cataldi7",
                 "location": "Cataldi Park",
-                "id": 6,
+                "id": 7,
                 "locationId": 3,
                 "expirationTime": 1654636034554
             }
@@ -229,7 +229,7 @@
                 "name": "EVC Lower Court 1",
                 "internalName": "evcLower1",
                 "location": "Evergreen Valley College Lower Courts",
-                "id": 0,
+                "id": 1,
                 "locationId": 4,
                 "expirationTime": 1654636034554
             },
@@ -237,7 +237,7 @@
                 "name": "EVC Lower Court 2",
                 "internalName": "evcLower2",
                 "location": "Evergreen Valley College Lower Courts",
-                "id": 1,
+                "id": 2,
                 "locationId": 4,
                 "expirationTime": 1654636034554
             },
@@ -245,7 +245,7 @@
                 "name": "EVC Lower Court 3",
                 "internalName": "evcLower3",
                 "location": "Evergreen Valley College Lower Courts",
-                "id": 2,
+                "id": 3,
                 "locationId": 4,
                 "expirationTime": 1654636034554
             }
@@ -260,7 +260,7 @@
                 "name": "Groesbeck Park Court 1",
                 "internalName": "groesbeck1",
                 "location": "Groesbeck Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 5,
                 "expirationTime": 1654636034554
             },
@@ -268,7 +268,7 @@
                 "name": "Groesbeck Park Court 2",
                 "internalName": "groesbeck2",
                 "location": "Groesbeck Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 5,
                 "expirationTime": 1654636034554
             },
@@ -276,7 +276,7 @@
                 "name": "Groesbeck Park Court 3",
                 "internalName": "groesbeck3",
                 "location": "Groesbeck Park",
-                "id": 2,
+                "id": 3,
                 "locationId": 5,
                 "expirationTime": 1654636034554
             }
@@ -291,7 +291,7 @@
                 "name": "River Glen Park Court 1",
                 "internalName": "riverGlen1",
                 "location": "River Glen Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 6,
                 "expirationTime": 1654636034554
             },
@@ -299,7 +299,7 @@
                 "name": "River Glen Park Court 2",
                 "internalName": "riverGlen2",
                 "location": "River Glen Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 6,
                 "expirationTime": 1654636034554
             }
@@ -312,7 +312,7 @@
         "courts": {
             "1": {
                 "name": "Mt. Pleasant HS Court 1",
-                "id": 0,
+                "id": 1,
                 "locationId": 1,
                 "internalName": "mphs1",
                 "location": "Mt. Pleasant High School",
@@ -322,7 +322,7 @@
                 "name": "Mt. Pleasant HS Court 2",
                 "internalName": "mphs2",
                 "location": "Mt. Pleasant High School",
-                "id": 1,
+                "id": 2,
                 "locationId": 1,
                 "expirationTime": 1654636034554
             },
@@ -330,14 +330,14 @@
                 "name": "Mt. Pleasant HS Court 3",
                 "internalName": "mphs3",
                 "location": "Mt. Pleasant High School",
-                "id": 2,
+                "id": 3,
                 "locationId": 7,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "Mt. Pleasant HS Court 4",
                 "internalName": "mphs4",
-                "id": 3,
+                "id": 4,
                 "locationId": 7,
                 "location": "Mt. Pleasant High School",
                 "expirationTime": 1654636034554
@@ -345,7 +345,7 @@
             "5": {
                 "name": "Mt. Pleasant HS Court 5",
                 "internalName": "mphs5",
-                "id": 4,
+                "id": 5,
                 "locationId": 7,
                 "location": "Mt. Pleasant High School",
                 "expirationTime": 1654636034554
@@ -353,7 +353,7 @@
             "6": {
                 "name": "Mt. Pleasant HS Court 6",
                 "internalName": "mphs6",
-                "id": 5,
+                "id": 6,
                 "locationId": 7,
                 "location": "Mt. Pleasant High School",
                 "expirationTime": 1654636034554
@@ -361,7 +361,7 @@
             "7": {
                 "name": "Mt. Pleasant HS Court 6",
                 "internalName": "mphs6",
-                "id": 6,
+                "id": 7,
                 "locationId": 7,
                 "location": "Mt. Pleasant High School",
                 "expirationTime": 1654636034554
@@ -369,7 +369,7 @@
             "8": {
                 "name": "Mt. Pleasant HS Court 6",
                 "internalName": "mphs6",
-                "id": 7,
+                "id": 8,
                 "locationId": 7,
                 "location": "Mt. Pleasant High School",
                 "expirationTime": 1654636034554
@@ -385,7 +385,7 @@
                 "name": "Meadowfair Park Court 1",
                 "internalName": "meadowfair1",
                 "location": "Meadowfair Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 8,
                 "expirationTime": 1654636034554
             },
@@ -393,7 +393,7 @@
                 "name": "Meadowfair Park Court 2",
                 "internalName": "meadowfair2",
                 "location": "Meadowfair Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 8,
                 "expirationTime": 1654636034554
             },
@@ -401,7 +401,7 @@
                 "name": "Meadowfair Park Court 3",
                 "internalName": "meadowfair3",
                 "location": "Meadowfair Park",
-                "id": 2,
+                "id": 3,
                 "locationId": 8,
                 "expirationTime": 1654636034554
             },
@@ -409,7 +409,7 @@
                 "name": "Meadowfair Park Court 4",
                 "internalName": "meadowfair4",
                 "location": "Meadowfair Park",
-                "id": 3,
+                "id": 4,
                 "locationId": 8,
                 "expirationTime": 1654636034554
             }
@@ -424,7 +424,7 @@
                 "name": "Mount Pleasant Park Court 1",
                 "internalName": "mountPleasant1",
                 "location": "Mount Pleasant Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 9,
                 "expirationTime": 1654636034554
             },
@@ -432,7 +432,7 @@
                 "name": "Mount Pleasant Park Court 2",
                 "internalName": "mountPleasant2",
                 "location": "Mount Pleasant Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 9,
                 "expirationTime": 1654636034554
             }
@@ -445,7 +445,7 @@
         "courts": {
             "1": {
                 "name": "James Lick HS Court 1",
-                "id": 0,
+                "id": 1,
                 "locationId": 10,
                 "internalName": "jlhs1",
                 "location": "James Lick High School",
@@ -455,7 +455,7 @@
                 "name": "James Lick HS Court 2",
                 "internalName": "jlhs2",
                 "location": "James Lick High School",
-                "id": 1,
+                "id": 2,
                 "locationId": 10,
                 "expirationTime": 1654636034554
             },
@@ -463,14 +463,14 @@
                 "name": "James Lick HS Court 3",
                 "internalName": "jlhs3",
                 "location": "James Lick High School",
-                "id": 2,
+                "id": 3,
                 "locationId": 10,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "James Lick HS Court 4",
                 "internalName": "jlhs4",
-                "id": 3,
+                "id": 4,
                 "locationId": 10,
                 "location": "James Lick High School",
                 "expirationTime": 1654636034554
@@ -478,7 +478,7 @@
             "5": {
                 "name": "James Lick HS Court 5",
                 "internalName": "jlhs5",
-                "id": 4,
+                "id": 5,
                 "locationId": 10,
                 "location": "James Lick High School",
                 "expirationTime": 1654636034554
@@ -486,7 +486,7 @@
             "6": {
                 "name": "James Lick HS Court 6",
                 "internalName": "jlhs6",
-                "id": 5,
+                "id": 6,
                 "locationId": 10,
                 "location": "James Lick High School",
                 "expirationTime": 1654636034554
@@ -500,7 +500,7 @@
         "courts": {
             "1": {
                 "name": "Yerba Buena HS Court 1",
-                "id": 0,
+                "id": 1,
                 "locationId": 11,
                 "internalName": "ybhs1",
                 "location": "Yerba Buena High School",
@@ -510,7 +510,7 @@
                 "name": "Yerba Buena HS Court 2",
                 "internalName": "ybhs2",
                 "location": "Yerba Buena High School",
-                "id": 1,
+                "id": 2,
                 "locationId": 11,
                 "expirationTime": 1654636034554
             },
@@ -518,14 +518,14 @@
                 "name": "Yerba Buena HS Court 3",
                 "internalName": "ybhs3",
                 "location": "Yerba Buena High School",
-                "id": 2,
+                "id": 3,
                 "locationId": 11,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "Yerba Buena HS Court 4",
                 "internalName": "ybhs4",
-                "id": 3,
+                "id": 4,
                 "locationId": 11,
                 "location": "Yerba Buena High School",
                 "expirationTime": 1654636034554
@@ -533,7 +533,7 @@
             "5": {
                 "name": "Yerba Buena HS Court 5",
                 "internalName": "ybhs5",
-                "id": 4,
+                "id": 5,
                 "locationId": 11,
                 "location": "Yerba Buena High School",
                 "expirationTime": 1654636034554
@@ -541,7 +541,7 @@
             "6": {
                 "name": "Yerba Buena HS Court 6",
                 "internalName": "ybhs6",
-                "id": 5,
+                "id": 6,
                 "locationId": 11,
                 "location": "Yerba Buena High School",
                 "expirationTime": 1654636034554
@@ -549,7 +549,7 @@
             "7": {
                 "name": "Yerba Buena HS Court 7",
                 "internalName": "ybhs7",
-                "id": 6,
+                "id": 7,
                 "locationId": 11,
                 "location": "Yerba Buena High School",
                 "expirationTime": 1654636034554
@@ -563,7 +563,7 @@
         "courts": {
             "1": {
                 "name": "San Jose HS Court 1",
-                "id": 0,
+                "id": 1,
                 "locationId": 12,
                 "internalName": "sjhs1",
                 "location": "San Jose High School",
@@ -573,7 +573,7 @@
                 "name": "San Jose HS Court 2",
                 "internalName": "sjhs2",
                 "location": "San Jose High School",
-                "id": 1,
+                "id": 2,
                 "locationId": 12,
                 "expirationTime": 1654636034554
             },
@@ -581,14 +581,14 @@
                 "name": "San Jose HS Court 3",
                 "internalName": "sjhs3",
                 "location": "San Jose High School",
-                "id": 2,
+                "id": 3,
                 "locationId": 12,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "San Jose HS Court 4",
                 "internalName": "sjhs4",
-                "id": 3,
+                "id": 4,
                 "locationId": 12,
                 "location": "San Jose High School",
                 "expirationTime": 1654636034554
@@ -596,7 +596,7 @@
             "5": {
                 "name": "San Jose HS Court 5",
                 "internalName": "sjhs5",
-                "id": 4,
+                "id": 5,
                 "locationId": 12,
                 "location": "San Jose High School",
                 "expirationTime": 1654636034554
@@ -610,7 +610,7 @@
         "courts": {
             "1": {
                 "name": "Andrew Hill HS Court 1",
-                "id": 0,
+                "id": 1,
                 "locationId": 13,
                 "internalName": "ahhs1",
                 "location": "Andrew Hill High School",
@@ -620,7 +620,7 @@
                 "name": "Andrew Hill HS Court 2",
                 "internalName": "ahhs2",
                 "location": "Andrew Hill High School",
-                "id": 1,
+                "id": 2,
                 "locationId": 13,
                 "expirationTime": 1654636034554
             },
@@ -628,14 +628,14 @@
                 "name": "Andrew Hill HS Court 3",
                 "internalName": "ahhs3",
                 "location": "Andrew Hill High School",
-                "id": 2,
+                "id": 3,
                 "locationId": 13,
                 "expirationTime": 1654636034554
             },
             "4": {
                 "name": "Andrew Hill HS Court 4",
                 "internalName": "ahhs4",
-                "id": 3,
+                "id": 4,
                 "locationId": 13,
                 "location": "Andrew Hill High School",
                 "expirationTime": 1654636034554
@@ -643,7 +643,7 @@
             "5": {
                 "name": "Andrew Hill HS Court 5",
                 "internalName": "ahhs5",
-                "id": 4,
+                "id": 5,
                 "locationId": 13,
                 "location": "Andrew Hill High School",
                 "expirationTime": 1654636034554
@@ -651,7 +651,7 @@
             "6": {
                 "name": "Andrew Hill HS Court 6",
                 "internalName": "ahhs6",
-                "id": 5,
+                "id": 6,
                 "locationId": 13,
                 "location": "Andrew Hill High School",
                 "expirationTime": 1654636034554
@@ -659,7 +659,7 @@
             "7": {
                 "name": "Andrew Hill HS Court 7",
                 "internalName": "ahhs7",
-                "id": 6,
+                "id": 7,
                 "locationId": 13,
                 "location": "Andrew Hill High School",
                 "expirationTime": 1654636034554
@@ -675,7 +675,7 @@
                 "name": "William Street Park Court 1",
                 "internalName": "williamStreet1",
                 "location": "William Street Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 14,
                 "expirationTime": 1654636034554
             },
@@ -683,7 +683,7 @@
                 "name": "William Street Park Court 2",
                 "internalName": "williamStreet2",
                 "location": "William Street Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 14,
                 "expirationTime": 1654636034554
             }
@@ -698,7 +698,7 @@
                 "name": "Solari Park Court 1",
                 "internalName": "solari1",
                 "location": "Solari Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 15,
                 "expirationTime": 1654636034554
             },
@@ -706,7 +706,7 @@
                 "name": "Solari Park Court 2",
                 "internalName": "solari2",
                 "location": "Solari Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 15,
                 "expirationTime": 1654636034554
             },
@@ -714,7 +714,7 @@
                 "name": "Solari Park Court 3",
                 "internalName": "solari3",
                 "location": "Solari Park",
-                "id": 2,
+                "id": 3,
                 "locationId": 15,
                 "expirationTime": 1654636034554
             },
@@ -722,7 +722,7 @@
                 "name": "Solari Park Court 4",
                 "internalName": "solari4",
                 "location": "Solari Park",
-                "id": 3,
+                "id": 4,
                 "locationId": 15,
                 "expirationTime": 1654636034554
             }
@@ -737,7 +737,7 @@
                 "name": "Backesto Park Court 1",
                 "internalName": "backesto1",
                 "location": "Backesto Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -745,7 +745,7 @@
                 "name": "Backesto Park Court 2",
                 "internalName": "backesto2",
                 "location": "Backesto Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -753,7 +753,7 @@
                 "name": "Backesto Park Court 3",
                 "internalName": "backesto3",
                 "location": "Backesto Park",
-                "id": 2,
+                "id": 3,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -761,7 +761,7 @@
                 "name": "Backesto Park Court 4",
                 "location": "Backesto Park",
                 "internalName": "backesto4",
-                "id": 3,
+                "id": 4,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -769,7 +769,7 @@
                 "name": "Backesto Park Court 5",
                 "location": "Backesto Park",
                 "internalName": "backesto5",
-                "id": 4,
+                "id": 5,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -777,7 +777,7 @@
                 "name": "Backesto Park Court 6",
                 "location": "Backesto Park",
                 "internalName": "backesto6",
-                "id": 5,
+                "id": 6,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -785,7 +785,7 @@
                 "name": "Backesto Park Court 7",
                 "location": "Backesto Park",
                 "internalName": "backesto7",
-                "id": 6,
+                "id": 7,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             },
@@ -793,7 +793,7 @@
                 "name": "Backesto Park Court 8",
                 "internalName": "backesto8",
                 "location": "Backesto Park",
-                "id": 7,
+                "id": 8,
                 "locationId": 16,
                 "expirationTime": 1654636034554
             }
@@ -808,7 +808,7 @@
                 "name": "John Muir MS Court 1",
                 "internalName": "jmms1",
                 "location": "John Muir Middle School",
-                "id": 0,
+                "id": 1,
                 "locationId": 17,
                 "expirationTime": 1654636034554
             },
@@ -816,7 +816,7 @@
                 "name": "John Muir MS Court 2",
                 "internalName": "jmms2",
                 "location": "John Muir Middle School",
-                "id": 1,
+                "id": 2,
                 "locationId": 17,
                 "expirationTime": 1654636034554
             },
@@ -824,7 +824,7 @@
                 "name": "John Muir MS Court 3",
                 "internalName": "jmms3",
                 "location": "John Muir Middle School",
-                "id": 2,
+                "id": 3,
                 "locationId": 17,
                 "expirationTime": 1654636034554
             },
@@ -832,7 +832,7 @@
                 "name": "John Muir MS Court 4",
                 "internalName": "jmms4",
                 "location": "John Muir Middle School",
-                "id": 3,
+                "id": 4,
                 "locationId": 17,
                 "expirationTime": 1654636034554
             }
@@ -847,7 +847,7 @@
                 "name": "Allen at Steinbeck ES Court 1",
                 "internalName": "aases1",
                 "location": "Allen at Steinbeck Elementary School",
-                "id": 0,
+                "id": 1,
                 "locationId": 18,
                 "expirationTime": 1654636034554
             },
@@ -855,7 +855,7 @@
                 "name": "Allen at Steinbeck ES Court 2",
                 "internalName": "aases2",
                 "location": "Allen at Steinbeck Elementary School",
-                "id": 1,
+                "id": 2,
                 "locationId": 18,
                 "expirationTime": 1654636034554
             },
@@ -863,7 +863,7 @@
                 "name": "Allen at Steinbeck ES Court 3",
                 "internalName": "aases3",
                 "location": "Allen at Steinbeck Elementary School",
-                "id": 2,
+                "id": 3,
                 "locationId": 18,
                 "expirationTime": 1654636034554
             },
@@ -871,7 +871,7 @@
                 "name": "Allen at Steinbeck ES Court 4",
                 "internalName": "aases4",
                 "location": "Allen at Steinbeck Elementary School",
-                "id": 3,
+                "id": 4,
                 "locationId": 18,
                 "expirationTime": 1654636034554
             }
@@ -886,7 +886,7 @@
                 "name": "Wallenberg Park Court 1",
                 "internalName": "wallenberg1",
                 "location": "Wallenberg Park",
-                "id": 0,
+                "id": 1,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -894,7 +894,7 @@
                 "name": "Wallenberg Park Court 2",
                 "internalName": "wallenberg2",
                 "location": "Wallenberg Park",
-                "id": 1,
+                "id": 2,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -902,7 +902,7 @@
                 "name": "Wallenberg Park Court 3",
                 "internalName": "wallenberg3",
                 "location": "Wallenberg Park",
-                "id": 2,
+                "id": 3,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -910,7 +910,7 @@
                 "name": "Wallenberg Park Court 4",
                 "internalName": "wallenberg4",
                 "location": "Wallenberg Park",
-                "id": 3,
+                "id": 4,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -918,7 +918,7 @@
                 "name": "Wallenberg Park Court 5",
                 "internalName": "wallenberg5",
                 "location": "Wallenberg Park",
-                "id": 4,
+                "id": 5,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -926,7 +926,7 @@
                 "name": "Wallenberg Park Court 6",
                 "internalName": "wallenberg6",
                 "location": "Wallenberg Park",
-                "id": 5,
+                "id": 6,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -934,7 +934,7 @@
                 "name": "Wallenberg Park Court 7",
                 "internalName": "wallenberg7",
                 "location": "Wallenberg Park",
-                "id": 6,
+                "id": 7,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             },
@@ -942,7 +942,7 @@
                 "name": "Wallenberg Park Court 8",
                 "internalName": "wallenberg8",
                 "location": "Wallenberg Park",
-                "id": 7,
+                "id": 8,
                 "locationId": 19,
                 "expirationTime": 1654636034554
             }
