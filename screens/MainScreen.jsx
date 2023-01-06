@@ -1,8 +1,8 @@
 import * as React from 'react'
-import {View, TouchableOpacity, Text, Dimensions, StyleSheet} from 'react-native'
+import {View, Alert, TouchableOpacity, Text, Dimensions, StyleSheet} from 'react-native'
 import globalStyles from '../styles'
 const screen = Dimensions.get("screen");
-import {signOutFunction} from '../utils/authentication'
+import { signOutFunction, deleteUserAccount } from '../utils/authentication'
 
 export default class HomeScreen extends React.Component{
     constructor(props){
@@ -13,6 +13,25 @@ export default class HomeScreen extends React.Component{
         await signOutFunction()  // failing, or succeeding
     }
 
+    deleteSucceed() {
+        return Alert.alert("Success", "Your account was deleted.", [{ text: "OK"}]);
+    }
+
+    deleteError() {
+        return Alert.alert("Failure", "Your account was not deleted. Please make sure you enter the correct password.", [{ text: "OK"}]);
+    }
+
+    async deletePrompt() {
+        Alert.prompt("Enter Password",
+                    "Enter your password to delete your account.",
+                    [
+                        { text: "Cancel", style: "cancel" },
+                        { text: "OK", onPress: (val) => deleteUserAccount(val).then(() => this.deleteSucceed()).catch(() => this.deleteError())}
+                    ],
+                    'secure-text'
+        )
+    }
+
     render() {
         return(
         <View style = {styles.container}>
@@ -21,7 +40,7 @@ export default class HomeScreen extends React.Component{
                     Court Selection
                 </Text>
             </View>
-            
+
             <View style = {styles.buttonContainer}>
                 <TouchableOpacity style = {[globalStyles.button, styles.button]}
                 onPress = {() => this.props.navigation.navigate('MapContainer')}>
@@ -29,7 +48,7 @@ export default class HomeScreen extends React.Component{
                         Map
                     </Text>
                 </TouchableOpacity>
-                
+
                 <TouchableOpacity style = {[globalStyles.button, styles.button]}
                 onPress = {() => this.props.navigation.navigate('CourtsList')}>
                     <Text style = {globalStyles.buttonText}>
@@ -42,6 +61,11 @@ export default class HomeScreen extends React.Component{
                     <Text style = {globalStyles.buttonText}>
                         Sign Out
                     </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style = {[globalStyles.button, styles.signOutButton]}
+                onPress = {() => this.deletePrompt()}>
+                    <Text style = {globalStyles.buttonText}>Delete Account</Text>
                 </TouchableOpacity>
             </View>
         </View>
