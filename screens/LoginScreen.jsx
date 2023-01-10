@@ -1,23 +1,43 @@
 import * as React from 'react'
 import {View, Text, TouchableOpacity, Dimensions, StyleSheet, TextInput} from 'react-native'
 import globalStyles from '../styles';
-import { logIn, authStateListener } from '../utils/authentication';
+import { logIn } from '../utils/authentication';
+
 export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
   async logInCallback() {
-    await logIn(this.state.email, this.state.password)  // failing, or succeeding
+    let result = await logIn(this.state.email, this.state.password);
+    // TODO: different action if failing or succeeding
+
+    if (result.user) {
+      // we have userCredential.user
+    } else {
+      // must be an error
+      // const errorCode = result.code;
+      // const errorMessage = result.message;
+      this.setState({ error: result.message });
+
+      // TODO: check error code and display a better message depending on the code
+    }
   }
 
   render(){
-    return(
+    return (
       <View style = {styles.container}>
+        <View>
+          <Text style={styles.error}>
+            {this.state.error}
+          </Text>
+        </View>
+
         <View style = {styles.textInputContainer}>
           <TextInput  style = {globalStyles.textInput}
             placeholder="Email"
@@ -25,9 +45,9 @@ export default class LoginScreen extends React.Component {
             onChangeText={text => this.setState({
               email:text
             })}/>
-          <TextInput 
+          <TextInput
             style = {globalStyles.textInput}
-            secureTextEntry = {true} 
+            secureTextEntry = {true}
             placeholder="Password"
             placeholderTextColor={'#dbd9d9'}
             onChangeText={text => this.setState({
@@ -37,16 +57,14 @@ export default class LoginScreen extends React.Component {
 
         <View style = {styles.buttonContainer}>
           <TouchableOpacity style = {globalStyles.button}
-            onPress = {() => this.logInCallback()}>
-            <Text style = {styles.buttonText}>Log In</Text>
+            onPress={() => this.logInCallback()}>
+            <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
         </View>
 
         <View style = {styles.forgotPassContainer}>
           <TouchableOpacity onPress = {() => this.props.navigation.navigate('ForgotPassword')}>
-            <Text style = {styles.text}>
-              Forgot Password?
-            </Text>
+            <Text style = {styles.text}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -65,16 +83,17 @@ const styles = StyleSheet.create({
     color: '#F9F9F9',
     textDecorationLine: 'underline'
   },
-
+  error: {
+    color: 'red',
+    marginVertical: 5,
+  },
   buttonText: {
     fontSize: 18,
     color: '#F9F9F9'
   },
-
   buttonContainer: {
     marginTop: 10
   },
-
   forgotPassContainer: {
     marginTop: 10
   },

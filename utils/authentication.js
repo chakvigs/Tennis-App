@@ -63,16 +63,13 @@ export const signUp = (firstName, lastName, email, password, rePassword) => {
 }
 
 export const logIn = (email, password) => {
-
   let user = signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       return userCredential.user;
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage)
+      return error;
     });
 
     return user;
