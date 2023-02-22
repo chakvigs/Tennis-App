@@ -91,15 +91,16 @@ const styles = StyleSheet.create({
     },
 
     titleContainer: {
-        padding: 10,
-        flex: 0.1,
+        flex: 1,
         //borderWidth: 2,
-        borderColor: 'pink'
+        borderColor: 'pink',
+        justifyContent: 'flex-end',
+        padding: 10
     },
     buttonContainer: {
-        flex: 0.20,
+        flex: 2,
         //borderWidth: 2,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         borderColor: 'white'
     }
