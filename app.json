@@ -2,7 +2,7 @@
   "expo": {
     "name": "Tennis Court Buddy",
     "slug": "tennis-court-buddy",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -31,6 +31,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8840b9ed-f61a-4e62-b95e-209ed538ebf9"
+      }
     }
   }
 }
